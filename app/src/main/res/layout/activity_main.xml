@@ -16,4 +16,14 @@
         app:srcCompat="@drawable/title_background"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100"
+        android:layout_height="100"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar_male" />
 </androidx.constraintlayout.widget.ConstraintLayout>
