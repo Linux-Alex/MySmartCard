@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.view.children
+import androidx.fragment.app.Fragment
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.oned.Code128Writer
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -19,7 +20,6 @@ import com.um.feri.aleksm.mysmartcard.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    val homeFragment = HomeActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         binding.navMain.setOnItemSelectedListener{
             when(it) {
                 R.id.menu_home -> {
-                    openMainFragment()
+                    openMainFragment(HomeActivity())
                 }
                 R.id.menu_add -> {
-
+                    openMainFragment(AddActivity())
                 }
                 R.id.menu_search -> {
 
@@ -47,13 +47,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(savedInstanceState == null) {
-            openMainFragment()
+            openMainFragment(HomeActivity())
         }
     }
 
-    private fun openMainFragment() {
+    private fun openMainFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentMainWindow, homeFragment)
+        transaction.replace(R.id.fragmentMainWindow, fragment)
         transaction.commit()
     }
 
