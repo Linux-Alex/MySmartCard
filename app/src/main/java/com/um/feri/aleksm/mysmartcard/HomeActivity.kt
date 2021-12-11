@@ -34,6 +34,7 @@ class HomeActivity : Fragment() {
         }*/
 
         displayBitmap("978107189178")
+
     }
     override fun onDestroyView() { //because it can live also when it is not showen
         super.onDestroyView()

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="shop">
+        <item>Müller</item>
+        <item>Mercator</item>
+        <item>Špar</item>
+        <item>Hofer</item>
+    </array>
+    <array name="logo">
+        <item>@drawable/ic_muller</item>
+        <item>@drawable/ic_mercator</item>
+        <item>@drawable/ic_spar</item>
+    </array>
+</resources>

@@ -15,14 +15,13 @@ import com.google.zxing.oned.Code128Writer
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.um.feri.aleksm.mysmartcard.databinding.ActivityMainBinding
 
-
-
-
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    lateinit var app: MyApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        app = application as MyApplication
         binding = ActivityMainBinding.inflate(layoutInflater)
         //setContentView(R.layout.activity_main)
         setContentView(binding.root)

@@ -23,7 +23,6 @@ class AddActivity : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
     override fun onDestroyView() { //because it can live also when it is not showen
         super.onDestroyView()
