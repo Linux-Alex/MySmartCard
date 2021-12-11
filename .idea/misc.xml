@@ -6,8 +6,10 @@
         <entry key="app/src/main/res/drawable/round_corners.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/shadow_circle.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/card_item.xml" value="0.2318840579710145" />
         <entry key="app/src/main/res/layout/fragment_add_activity.xml" value="0.35778985507246375" />
         <entry key="app/src/main/res/layout/fragment_home_activity.xml" value="0.35778985507246375" />
+        <entry key="app/src/main/res/layout/fragment_settings_activity.xml" value="0.32592592592592595" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2609375" />
       </map>
     </option>

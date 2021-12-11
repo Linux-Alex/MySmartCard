@@ -38,10 +38,10 @@ class MainActivity : AppCompatActivity() {
                     openMainFragment(AddActivity())
                 }
                 R.id.menu_search -> {
-
+                    openMainFragment(SearchActivity())
                 }
                 R.id.menu_settings -> {
-
+                    openMainFragment(SettingsActivity())
                 }
             }
         }
