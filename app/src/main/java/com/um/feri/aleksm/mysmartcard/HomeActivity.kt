@@ -7,15 +7,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat.getColor
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.oned.Code128Writer
 import com.um.feri.aleksm.mysmartcard.databinding.FragmentHomeActivityBinding
+import java.io.IOException
 
 class HomeActivity : Fragment() {
     private var _binding: FragmentHomeActivityBinding? = null //we have fragment_my.xml layout
+    lateinit var data:MySmartCard
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding
     override fun onCreateView(
@@ -23,17 +29,41 @@ class HomeActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeActivityBinding.inflate(inflater, container, false)
+        data = (activity as MainActivity).app.data
+        binding?.lblUsername?.setText(data.firstname + " " + data.lastname)
+        binding?.recyclerViewAllCards?.layoutManager = LinearLayoutManager(context)
+        val adapter = CardAdapter(requireContext(), data, object:CardAdapter.CardOnClick {
+            override fun onClick(p0: View?, position: Int) {
+                //TODO("Not yet implemented")
+                if(data.cards[position].cardNumber != "") {
+                    displayBitmap(data.cards[position].cardNumber)
+                }
+                else {
+                    Snackbar.make(binding!!.imgMainBarcode, "Invalid card code", Snackbar.LENGTH_LONG).show()
+                }
+            }
+        },
+        object:CardAdapter.CardOnLongClick {
+            override fun onClick(p0: View?, position: Int) {
+                //TODO("Not yet implemented")
+            }
+        })
+        binding?.recyclerViewAllCards?.adapter = adapter
+        binding!!.recyclerViewAllCards.apply {
+            layoutManager = GridLayoutManager(context, 2)
+        }
         return binding!!.root
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*binding.buttonFirst.setOnClickListener {
-            Timber.d(“Do some action here”);
-        }*/
 
-        displayBitmap("978107189178")
+
+        Log.d("Card numbers", "Number of cards: " + data.cards.size)
+
+        /*if(data.cards.size > 0)
+            displayBitmap(data.cards[0].cardNumber)*/
 
     }
     override fun onDestroyView() { //because it can live also when it is not showen

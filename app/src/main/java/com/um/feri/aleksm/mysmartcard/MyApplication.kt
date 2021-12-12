@@ -32,10 +32,12 @@ class MyApplication: Application() {
     fun initData() {
         data = try {
             gson = Gson()
+            file = File(filesDir, MY_FILE_NAME)
             gson.fromJson(FileUtils.readFileToString(file), MySmartCard::class.java)
         } catch (e: IOException) {
             MySmartCard("John", "Doe")
         }
+        Log.d("Info", "Number of saved cards: " + data.cards.size)
     }
 
     fun saveToFile() {

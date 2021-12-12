@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.oned.Code128Writer
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -48,12 +52,37 @@ class MainActivity : AppCompatActivity() {
         if(savedInstanceState == null) {
             openMainFragment(HomeActivity())
         }
+
+        //findViewById<TextView>(R.id.lblUsername).setText(app.data.firstname + " " + app.data.lastname)
     }
 
     private fun openMainFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentMainWindow, fragment)
         transaction.commit()
+    }
+
+    fun btnAddCardSubmit(view: android.view.View) {
+        if(findViewById<EditText>(R.id.txtCardNumber).text.toString() == "") {
+            Snackbar.make(view, "Enter a card number", Snackbar.LENGTH_LONG).show()
+        }
+        else {
+            app.data.cards.add(Card(
+                findViewById<EditText>(R.id.txtCardNumber).text.toString(),
+                findViewById<Spinner>(R.id.spinnerShop).selectedItem.toString(),
+                findViewById<EditText>(R.id.txtOwner).text.toString()
+            ));
+            app.saveToFile()
+            Snackbar.make(view, "You added a card", Snackbar.LENGTH_LONG).show()
+            btnAddCardReset(view)
+            Log.d("Card status", "Successfully added one more card.")
+        }
+    }
+
+    fun btnAddCardReset(view: android.view.View) {
+        findViewById<EditText>(R.id.txtCardNumber).setText("")
+        findViewById<Spinner>(R.id.spinnerShop).setSelection(0)
+        findViewById<EditText>(R.id.txtOwner).setText("")
     }
 
 
