@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Išči</string>
+    <string name="addCard">Dodaj</string>
+    <string name="settings">Nastavitve</string>
+    <string name="cardNumber">Številka kartice</string>
+    <string name="cardNumberHint">Vnesite številko kartice</string>
+    <string name="shop">Trgovina</string>
+    <string name="owner">Lastnik</string>
+    <string name="ownerHint">Vnesite ime lastnika</string>
+    <string name="add">Dodaj</string>
+    <string name="reset">Ponastavi</string>
+    <string name="firstname">Ime</string>
+    <string name="lastname">Priimek</string>
+    <string name="firstnameHint">Vnesite ime</string>
+    <string name="lastnameHint">Vnesite priimek</string>
+    <string name="gender">Spol</string>
+    <string name="maleGender">Moški</string>
+    <string name="femaleGender">Ženski</string>
+    <string name="save">Shrani</string>
+    <string name="home">Domov</string>
+    <string name="profile">Uporabniški račun</string>
+</resources>

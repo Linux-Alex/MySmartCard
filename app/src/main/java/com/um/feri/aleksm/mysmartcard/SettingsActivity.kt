@@ -9,6 +9,7 @@ import com.um.feri.aleksm.mysmartcard.databinding.FragmentSettingsActivityBindin
 
 class SettingsActivity : Fragment() {
     private var _binding: FragmentSettingsActivityBinding? = null
+    lateinit var data:MySmartCard
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding
     override fun onCreateView(
@@ -16,6 +17,17 @@ class SettingsActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSettingsActivityBinding.inflate(inflater, container, false)
+        data = (activity as MainActivity).app.data
+
+        binding?.txtSettingsFirstname?.setText(data.firstname)
+        binding?.txtSettingsLastname?.setText(data.lastname)
+        if(data.gender == Gender.Male) {
+            binding?.rbtnSettingsGenderMale?.isChecked = true
+        }
+        else if(data.gender == Gender.Female) {
+            binding?.rbtnSettingsGenderFemale?.isChecked = true
+        }
+
         return binding!!.root
 
     }

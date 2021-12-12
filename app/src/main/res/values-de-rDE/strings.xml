@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Suchen</string>
+    <string name="addCard">Hinzufügen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="cardNumber">Kartennummer</string>
+    <string name="cardNumberHint">Geben sie ihre Kartennummer ein</string>
+    <string name="shop">Einkaufsladen</string>
+    <string name="owner">Besitzer</string>
+    <string name="ownerHint">Geben sie den Namen des Besitzers ein</string>
+    <string name="add">Hinzufügen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="firstname">Vorname</string>
+    <string name="lastname">Nachname</string>
+    <string name="firstnameHint">Geben sie ihren Vornamen ein</string>
+    <string name="lastnameHint">Geben sie ihren Nachnamen ein</string>
+    <string name="gender">Geschlecht</string>
+    <string name="maleGender">Männlich</string>
+    <string name="femaleGender">Weiblich</string>
+    <string name="save">Speichern</string>
+    <string name="home">Zuhause</string>
+    <string name="profile">Benutzerprofil</string>
+</resources>

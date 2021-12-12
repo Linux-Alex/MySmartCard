@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.ColorInt
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
@@ -83,6 +80,16 @@ class MainActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.txtCardNumber).setText("")
         findViewById<Spinner>(R.id.spinnerShop).setSelection(0)
         findViewById<EditText>(R.id.txtOwner).setText("")
+    }
+
+    fun settingsSave(view: android.view.View) {
+        app.data.firstname = findViewById<EditText>(R.id.txtSettingsFirstname).text.toString()
+        app.data.lastname = findViewById<EditText>(R.id.txtSettingsLastname).text.toString()
+        if(findViewById<RadioButton>(R.id.rbtnSettingsGenderMale).isChecked)
+            app.data.gender = Gender.Male
+        else if(findViewById<RadioButton>(R.id.rbtnSettingsGenderFemale).isChecked)
+            app.data.gender = Gender.Female
+        app.saveToFile()
     }
 
 

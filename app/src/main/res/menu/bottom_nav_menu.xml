@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_baseline_home_24"
         app:cnb_backgroundColor="@color/primaryColor"
         android:state_checked="true"/>
 
     <item
         android:id="@+id/menu_search"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_baseline_search_24"
         app:cnb_backgroundColor="@color/primaryColor"/>
 
 
     <item
         android:id="@+id/menu_add"
-        android:title="Add card"
+        android:title="@string/addCard"
         android:icon="@drawable/ic_baseline_add_card_24"
         app:cnb_backgroundColor="@color/primaryColor"/>
 
 
     <item
         android:id="@+id/menu_settings"
-        android:title="Settings"
+        android:title="@string/settings"
         android:icon="@drawable/ic_baseline_settings_24"
         app:cnb_backgroundColor="@color/primaryColor"/>
 

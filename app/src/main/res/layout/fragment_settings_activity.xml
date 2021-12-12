@@ -49,7 +49,7 @@
                 android:id="@+id/lblSettingsProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:text="@string/profile"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,21 +61,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Firstname"
+                android:hint="@string/firstnameHint"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                app:layout_constraintEnd_toStartOf="@+id/txtSettingsLastname"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblSettingsName" />
+                app:layout_constraintTop_toBottomOf="@+id/lblSettingsFirstname" />
 
             <TextView
-                android:id="@+id/lblSettingsName"
+                android:id="@+id/lblSettingsFirstname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Firstname and lastname"
+                android:text="@string/firstname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,27 +83,26 @@
 
             <EditText
                 android:id="@+id/txtSettingsLastname"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Lastname"
+                android:hint="@string/lastnameHint"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/txtSettingsFirstname"
-                app:layout_constraintTop_toBottomOf="@+id/lblSettingsName" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblSettingsLastname" />
 
             <TextView
                 android:id="@+id/lbsSettingsGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="@string/gender"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtSettingsFirstname" />
+                app:layout_constraintTop_toBottomOf="@+id/txtSettingsLastname" />
 
             <RadioGroup
                 android:id="@+id/radioGroupSettingsGender"
@@ -119,14 +118,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Male" />
+                    android:buttonTint="@color/primaryColor"
+                    android:checked="true"
+                    android:text="@string/maleGender" />
 
                 <RadioButton
                     android:id="@+id/rbtnSettingsGenderFemale"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Female" />
+                    android:text="@string/femaleGender" />
             </RadioGroup>
 
             <Button
@@ -134,11 +135,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Save"
+                android:onClick="settingsSave"
+                android:text="@string/save"
                 app:icon="@drawable/ic_baseline_save_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroupSettingsGender" />
+
+            <TextView
+                android:id="@+id/lblSettingsLastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lastname"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSettingsFirstname" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

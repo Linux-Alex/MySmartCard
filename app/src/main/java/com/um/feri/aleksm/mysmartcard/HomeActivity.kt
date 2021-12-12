@@ -62,8 +62,8 @@ class HomeActivity : Fragment() {
 
         Log.d("Card numbers", "Number of cards: " + data.cards.size)
 
-        /*if(data.cards.size > 0)
-            displayBitmap(data.cards[0].cardNumber)*/
+        if(data.cards.size > 0)
+            displayBitmap(data.cards[0].cardNumber)
 
     }
     override fun onDestroyView() { //because it can live also when it is not showen

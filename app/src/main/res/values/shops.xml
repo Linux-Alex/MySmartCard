@@ -4,11 +4,12 @@
         <item>Müller</item>
         <item>Mercator</item>
         <item>Špar</item>
-        <item>Hofer</item>
+        <item>Tuš</item>
     </string-array>
     <string-array name="logo">
         <item>drawable/ic_muller</item>
         <item>drawable/ic_mercator</item>
         <item>drawable/ic_spar</item>
+        <item>drawable/ic_tus</item>
     </string-array>
 </resources>
