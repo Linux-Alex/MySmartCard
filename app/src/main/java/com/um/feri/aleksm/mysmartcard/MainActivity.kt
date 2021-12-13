@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         binding.navMain.setOnItemSelectedListener{
             when(it) {
                 R.id.menu_home -> {
-                    openMainFragment(HomeActivity())
+                    openMainFragment(HomeActivity(app))
                 }
                 R.id.menu_add -> {
-                    openMainFragment(AddActivity(app.data))
+                    openMainFragment(AddActivity(app, -1))
                 }
                 R.id.menu_search -> {
                     openMainFragment(SearchActivity())
@@ -47,13 +47,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(savedInstanceState == null) {
-            openMainFragment(HomeActivity())
+            openMainFragment(HomeActivity(app))
         }
 
         //findViewById<TextView>(R.id.lblUsername).setText(app.data.firstname + " " + app.data.lastname)
     }
 
-    private fun openMainFragment(fragment: Fragment) {
+    fun openMainFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentMainWindow, fragment)
         transaction.commit()
@@ -61,25 +61,57 @@ class MainActivity : AppCompatActivity() {
 
     fun btnAddCardSubmit(view: android.view.View) {
         if(findViewById<EditText>(R.id.txtCardNumber).text.toString() == "") {
-            Snackbar.make(view, "Enter a card number", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, getString(R.string.notificationEnterCardNumber), Snackbar.LENGTH_LONG).show()
         }
         else {
-            app.data.cards.add(Card(
-                findViewById<EditText>(R.id.txtCardNumber).text.toString(),
-                findViewById<Spinner>(R.id.spinnerShop).selectedItem.toString(),
-                findViewById<EditText>(R.id.txtOwner).text.toString()
-            ));
-            app.saveToFile()
-            Snackbar.make(view, "You added a card", Snackbar.LENGTH_LONG).show()
-            btnAddCardReset(view)
-            Log.d("Card status", "Successfully added one more card.")
+            if(findViewById<Button>(R.id.btnAddCard).text == getString(R.string.edit)) {
+                app.data.cards.forEach { it ->
+                    if(it.cardNumber == findViewById<EditText>(R.id.txtCardNumber).text.toString()) {
+                        it.owner = findViewById<EditText>(R.id.txtOwner).text.toString()
+                        it.shop = findViewById<Spinner>(R.id.spinnerShop).selectedItem.toString()
+                    }
+                }
+                openMainFragment(HomeActivity(app))
+            }
+            else {
+                var cardAlreadyExsist:Boolean = false
+                app.data.cards.forEach { it ->
+                    if(it.cardNumber == findViewById<EditText>(R.id.txtCardNumber).text.toString())
+                        cardAlreadyExsist = true
+                }
+
+                if(!cardAlreadyExsist) {
+                    app.data.cards.add(Card(
+                        findViewById<EditText>(R.id.txtCardNumber).text.toString(),
+                        findViewById<Spinner>(R.id.spinnerShop).selectedItem.toString(),
+                        findViewById<EditText>(R.id.txtOwner).text.toString()
+                    ))
+                    app.saveToFile()
+                    Snackbar.make(view, getString(R.string.notificationSuccessfullyAdddedCard), Snackbar.LENGTH_LONG).show()
+                    btnAddCardReset(view)
+                    Log.d("Card status", "Successfully added one more card.")
+                }
+                else {
+                    Snackbar.make(view, getString(R.string.notificationCardAlreadyExsist), Snackbar.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
     fun btnAddCardReset(view: android.view.View) {
-        findViewById<EditText>(R.id.txtCardNumber).setText("")
-        findViewById<Spinner>(R.id.spinnerShop).setSelection(0)
-        findViewById<EditText>(R.id.txtOwner).setText("")
+        if(findViewById<Button>(R.id.btnReset).text == getString(R.string.delete)) {
+            for ((index, value) in app.data.cards.withIndex()) {
+                if(value.cardNumber == findViewById<EditText>(R.id.txtCardNumber).text.toString())
+                    app.data.cards.removeAt(index)
+            }
+            openMainFragment(HomeActivity(app))
+            app.saveToFile()
+        }
+        else {
+            findViewById<EditText>(R.id.txtCardNumber).setText("")
+            findViewById<Spinner>(R.id.spinnerShop).setSelection(0)
+            findViewById<EditText>(R.id.txtOwner).setText("")
+        }
     }
 
     fun settingsSave(view: android.view.View) {

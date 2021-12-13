@@ -19,7 +19,7 @@ import com.google.zxing.oned.Code128Writer
 import com.um.feri.aleksm.mysmartcard.databinding.FragmentHomeActivityBinding
 import java.io.IOException
 
-class HomeActivity : Fragment() {
+class HomeActivity(var app:MyApplication) : Fragment() {
     private var _binding: FragmentHomeActivityBinding? = null //we have fragment_my.xml layout
     lateinit var data:MySmartCard
     // This property is only valid between onCreateView and onDestroyView.
@@ -29,12 +29,14 @@ class HomeActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeActivityBinding.inflate(inflater, container, false)
+
         data = (activity as MainActivity).app.data
         binding?.lblUsername?.setText(data.firstname + " " + data.lastname)
         if(data.gender == Gender.Male)
             binding?.imgAvatar?.setImageResource(R.drawable.avatar_male)
         else if(data.gender == Gender.Female)
             binding?.imgAvatar?.setImageResource(R.drawable.avatar_female)
+
         binding?.recyclerViewAllCards?.layoutManager = LinearLayoutManager(context)
         val adapter = CardAdapter(requireContext(), data, object:CardAdapter.CardOnClick {
             override fun onClick(p0: View?, position: Int) {
@@ -48,8 +50,10 @@ class HomeActivity : Fragment() {
             }
         },
         object:CardAdapter.CardOnLongClick {
+
             override fun onClick(p0: View?, position: Int) {
                 //TODO("Not yet implemented")
+                (activity as MainActivity?)!!.openMainFragment(AddActivity(app, position))
             }
         })
         binding?.recyclerViewAllCards?.adapter = adapter

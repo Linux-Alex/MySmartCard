@@ -20,5 +20,10 @@
     <string name="save">Save</string>
     <string name="home">Home</string>
     <string name="profile">Userprofile</string>
+    <string name="edit">Edit</string>
+    <string name="notificationSuccessfullyAdddedCard">Card was successfully added</string>
+    <string name="notificationCardAlreadyExsist">Card already exsist</string>
+    <string name="notificationEnterCardNumber">Enter a card number</string>
+    <string name="delete">Delete</string>
 
 </resources>

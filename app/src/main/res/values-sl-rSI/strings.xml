@@ -20,4 +20,9 @@
     <string name="save">Shrani</string>
     <string name="home">Domov</string>
     <string name="profile">Uporabniški račun</string>
+    <string name="edit">Uredi</string>
+    <string name="notificationSuccessfullyAdddedCard">Uspešno ste dodali kartico</string>
+    <string name="notificationCardAlreadyExsist">Kartica že obstaja</string>
+    <string name="notificationEnterCardNumber">Vnesite številko kartice</string>
+    <string name="delete">Izbriši</string>
 </resources>

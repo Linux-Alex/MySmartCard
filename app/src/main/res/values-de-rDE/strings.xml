@@ -20,4 +20,9 @@
     <string name="save">Speichern</string>
     <string name="home">Zuhause</string>
     <string name="profile">Benutzerprofil</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="notificationSuccessfullyAdddedCard">Die Karte wurde erfolgreich hinzugefügt</string>
+    <string name="notificationCardAlreadyExsist">Die Karte existiert bereits</string>
+    <string name="notificationEnterCardNumber">Geben sie ihre Kartennummber ein</string>
+    <string name="delete">Entfernen</string>
 </resources>
