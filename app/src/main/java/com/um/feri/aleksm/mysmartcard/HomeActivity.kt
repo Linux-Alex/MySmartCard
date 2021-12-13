@@ -31,6 +31,10 @@ class HomeActivity : Fragment() {
         _binding = FragmentHomeActivityBinding.inflate(inflater, container, false)
         data = (activity as MainActivity).app.data
         binding?.lblUsername?.setText(data.firstname + " " + data.lastname)
+        if(data.gender == Gender.Male)
+            binding?.imgAvatar?.setImageResource(R.drawable.avatar_male)
+        else if(data.gender == Gender.Female)
+            binding?.imgAvatar?.setImageResource(R.drawable.avatar_female)
         binding?.recyclerViewAllCards?.layoutManager = LinearLayoutManager(context)
         val adapter = CardAdapter(requireContext(), data, object:CardAdapter.CardOnClick {
             override fun onClick(p0: View?, position: Int) {

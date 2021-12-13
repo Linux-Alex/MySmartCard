@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     openMainFragment(HomeActivity())
                 }
                 R.id.menu_add -> {
-                    openMainFragment(AddActivity())
+                    openMainFragment(AddActivity(app.data))
                 }
                 R.id.menu_search -> {
                     openMainFragment(SearchActivity())

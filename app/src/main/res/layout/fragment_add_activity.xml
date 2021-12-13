@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/cardNumberHint"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toStartOf="@+id/btnBarCodeScanner"
                 app:layout_constraintHorizontal_bias="0.5"

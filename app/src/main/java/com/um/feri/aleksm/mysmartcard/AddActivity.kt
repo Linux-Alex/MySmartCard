@@ -10,9 +10,9 @@ import com.um.feri.aleksm.mysmartcard.databinding.FragmentAddActivityBinding
 import com.um.feri.aleksm.mysmartcard.databinding.FragmentHomeActivityBinding
 
 
-class AddActivity : Fragment() {
+class AddActivity(var data:MySmartCard) : Fragment() {
     private var _binding: FragmentAddActivityBinding? = null
-    lateinit var data:MySmartCard
+    //lateinit var data:MySmartCard
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding
     override fun onCreateView(
