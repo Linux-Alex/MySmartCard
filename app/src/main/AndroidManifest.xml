@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MySmartCard"
         android:name=".MyApplication">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAzYD-HEEbReFBC6Q7i7UHBF63-jlXnVDY" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

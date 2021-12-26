@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_tus.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/drawable/round_corners.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/drawable/shadow_circle.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />

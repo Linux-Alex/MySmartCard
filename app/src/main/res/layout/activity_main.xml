@@ -26,8 +26,10 @@
         android:id="@+id/fragmentMainWindow"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="36dp"
+        android:paddingBottom="0dp"
         app:layout_constraintBottom_toTopOf="@+id/navMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.um.feri.aleksm.mysmartcard
 
 import android.content.ClipData
+import android.content.Context
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.oned.Code128Writer
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.um.feri.aleksm.mysmartcard.databinding.ActivityMainBinding
+import org.osmdroid.config.Configuration
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -28,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         findViewById<ChipNavigationBar>(R.id.navMain).setItemSelected(R.id.menu_home)
+
+        // OSM maps
+        Configuration.getInstance().load(applicationContext, this.getPreferences(Context.MODE_PRIVATE))
 
         binding.navMain.setOnItemSelectedListener{
             when(it) {
