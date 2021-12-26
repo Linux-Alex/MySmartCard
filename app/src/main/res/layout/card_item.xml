@@ -16,10 +16,9 @@
         <ImageView
             android:id="@+id/imgCardShopLogo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_margin="8dp"
             android:adjustViewBounds="true"
-            android:maxHeight="40dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
