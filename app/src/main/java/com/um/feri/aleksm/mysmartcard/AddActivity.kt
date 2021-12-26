@@ -34,7 +34,7 @@ class AddActivity(var app:MyApplication, var position:Int) : Fragment() {
             binding?.btnAddCard?.setText(R.string.edit)
             binding?.btnReset?.setText(R.string.delete)
             binding?.txtCardNumber?.isEnabled = false
-        }
+         }
 
         return binding!!.root
 
