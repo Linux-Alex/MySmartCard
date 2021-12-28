@@ -59,7 +59,8 @@
         app:layout_constraintTop_toBottomOf="@+id/lblUsername" />
 
     <ImageView
-        android:id="@+id/imgMainBarcode"
+
+        android:id="@+id/imgMainBarcodeBorder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_barcode_height"
         android:layout_marginLeft="30dp"
@@ -70,8 +71,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:elevation="8dp"/>
+
+    <TextView
+        android:id="@+id/lblMainCardShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:text="Shop name"
+        app:layout_constraintEnd_toEndOf="@+id/imgMainBarcodeBorder"
+        app:layout_constraintStart_toStartOf="@+id/imgMainBarcodeBorder"
+        app:layout_constraintTop_toTopOf="@+id/imgMainBarcodeBorder" />
+
+    <TextView
+        android:id="@+id/lblMainCardNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:text="0123456789"
+        app:layout_constraintBottom_toBottomOf="@+id/imgMainBarcodeBorder"
+        app:layout_constraintEnd_toEndOf="@+id/imgMainBarcodeBorder"
+        app:layout_constraintStart_toStartOf="@+id/imgMainBarcodeBorder" />
+
+    <ImageView
+        android:id="@+id/imgMainBarcode"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
+        android:elevation="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/lblMainCardNumber"
+        app:layout_constraintEnd_toEndOf="@+id/imgMainBarcodeBorder"
+        app:layout_constraintStart_toStartOf="@+id/imgMainBarcodeBorder"
+        app:layout_constraintTop_toBottomOf="@+id/lblMainCardShop" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAllCards"
@@ -81,6 +116,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgMainBarcode"/>
+        app:layout_constraintTop_toBottomOf="@+id/imgMainBarcodeBorder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

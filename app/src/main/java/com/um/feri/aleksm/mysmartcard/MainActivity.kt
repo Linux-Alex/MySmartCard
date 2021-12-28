@@ -54,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         if(savedInstanceState == null) {
             openMainFragment(HomeActivity(app))
         }
-
-        //findViewById<TextView>(R.id.lblUsername).setText(app.data.firstname + " " + app.data.lastname)
     }
 
     fun openMainFragment(fragment: Fragment) {

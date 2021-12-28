@@ -42,7 +42,7 @@ class HomeActivity(var app:MyApplication) : Fragment() {
             override fun onClick(p0: View?, position: Int) {
                 //TODO("Not yet implemented")
                 if(data.cards[position].cardNumber != "") {
-                    displayBitmap(data.cards[position].cardNumber)
+                    displayBitmap(data.cards[position])
                 }
                 else {
                     Snackbar.make(binding!!.imgMainBarcode, "Invalid card code", Snackbar.LENGTH_LONG).show()
@@ -71,7 +71,7 @@ class HomeActivity(var app:MyApplication) : Fragment() {
         Log.d("Card numbers", "Number of cards: " + data.cards.size)
 
         if(data.cards.size > 0)
-            displayBitmap(data.cards[0].cardNumber)
+            displayBitmap(data.cards[0])
 
     }
     override fun onDestroyView() { //because it can live also when it is not showen
@@ -79,8 +79,10 @@ class HomeActivity(var app:MyApplication) : Fragment() {
         _binding = null
     }
 
-    private fun displayBitmap(value:String) {
-        var barcodeImageView: ImageView = binding!!.imgMainBarcode;
+    private fun displayBitmap(value:Card) {
+        var barcodeImageView: ImageView = binding!!.imgMainBarcode
+        binding?.lblMainCardNumber?.text = value.cardNumber
+        binding?.lblMainCardShop?.text = value.shop + " - " + value.owner
         val imageContainerWidth = 200*2 // barcodeImageView.background.toBitmap().width
         val imageContainerHeight = 40*2 // barcodeImageView.background.toBitmap().height
 
@@ -88,7 +90,7 @@ class HomeActivity(var app:MyApplication) : Fragment() {
 
         barcodeImageView.setImageBitmap(
             createBarcodeBitmap(
-                value, resources.getColor(R.color.black), resources.getColor(R.color.white), imageContainerWidth, imageContainerHeight
+                value.cardNumber, resources.getColor(R.color.black), resources.getColor(R.color.white), imageContainerWidth, imageContainerHeight
             )
         )
     }

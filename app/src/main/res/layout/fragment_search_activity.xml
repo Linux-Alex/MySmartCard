@@ -6,9 +6,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SearchActivity">
 
-    <org.osmdroid.views.MapView
+    <!--<org.osmdroid.views.MapView
         android:id="@+id/map"
         tilesource="Mapnik"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblSearchTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="-16dp"/>-->
+
+    <!--<com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/lblSearchTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="-16dp"/>-->
+
+    <fragment
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/lblSearchTitle"
