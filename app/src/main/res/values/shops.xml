@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="shop">
-        <item>Müller</item>
-        <item>Mercator</item>
+<!--        <item>Müller</item>-->
+<!--        <item>Mercator</item>-->
+        <item>Baby Center</item>
+        <item>Big Bang</item>
+        <item>CCC</item>
+        <item>DM</item>
+        <item>E. Leclerc</item>
+        <item>Hervis</item>
+        <item>Jager</item>
+        <item>Mana</item>
+        <item>Merkur</item>
+        <item>Mömax</item>
+        <item>OMV</item>
+        <item>Peek &amp; Cloppenburg</item>
+        <item>Pikapolonica</item>
         <item>Špar</item>
         <item>Tuš</item>
     </string-array>
     <string-array name="logo">
-        <item>drawable/ic_muller</item>
-        <item>drawable/ic_mercator</item>
+<!--        <item>drawable/ic_muller</item>-->
+<!--        <item>drawable/ic_mercator</item>-->
+        <item>drawable/ic_babycenter</item>
+        <item>drawable/ic_big_bang</item>
+        <item>drawable/ic_ccc</item>
+        <item>drawable/ic_dm</item>
+        <item>drawable/ic_e_leclerc</item>
+        <item>drawable/ic_hervis</item>
+        <item>drawable/ic_jager</item>
+        <item>drawable/ic_mana</item>
+        <item>drawable/ic_merkur</item>
+        <item>drawable/ic_moemax</item>
+        <item>drawable/ic_omv</item>
+        <item>drawable/ic_peek_and_cloppenburg</item>
+        <item>drawable/ic_pikapolonica</item>
         <item>drawable/ic_spar</item>
         <item>drawable/ic_tus</item>
     </string-array>

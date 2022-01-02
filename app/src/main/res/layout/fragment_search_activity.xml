@@ -28,7 +28,7 @@
         android:layout_marginTop="-16dp"/>-->
 
     <fragment
-        class="com.google.android.gms.maps.SupportMapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="0dp"

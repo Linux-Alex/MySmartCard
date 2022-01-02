@@ -1,5 +1,6 @@
 package com.um.feri.aleksm.mysmartcard
 
+import android.Manifest
 import android.content.ClipData
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,6 +10,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.*
 import androidx.annotation.ColorInt
+import androidx.core.app.ActivityCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         // OSM maps
         Configuration.getInstance().load(applicationContext, this.getPreferences(Context.MODE_PRIVATE))
+
+        // Permissions
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
 
         binding.navMain.setOnItemSelectedListener{
             when(it) {
