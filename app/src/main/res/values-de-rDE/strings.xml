@@ -25,4 +25,5 @@
     <string name="notificationCardAlreadyExsist">Die Karte existiert bereits</string>
     <string name="notificationEnterCardNumber">Geben sie ihre Kartennummber ein</string>
     <string name="delete">Entfernen</string>
+    <string name="myCurrentLocation">Meine aktueller Standort</string>
 </resources>

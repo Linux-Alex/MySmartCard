@@ -1,21 +1,21 @@
 package com.um.feri.aleksm.mysmartcard
 
 import android.Manifest
-import android.content.ClipData
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
+import android.location.Location
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.widget.*
-import androidx.annotation.ColorInt
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.oned.Code128Writer
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.um.feri.aleksm.mysmartcard.databinding.ActivityMainBinding
 import org.osmdroid.config.Configuration
@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var app: MyApplication
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    @SuppressLint("MissingPermission")
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = application as MyApplication
@@ -34,10 +38,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<ChipNavigationBar>(R.id.navMain).setItemSelected(R.id.menu_home)
 
         // OSM maps
-        Configuration.getInstance().load(applicationContext, this.getPreferences(Context.MODE_PRIVATE))
-
-        // Permissions
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
+        //Configuration.getInstance().load(applicationContext, this.getPreferences(Context.MODE_PRIVATE))
 
         binding.navMain.setOnItemSelectedListener{
             when(it) {
@@ -48,7 +49,8 @@ class MainActivity : AppCompatActivity() {
                     openMainFragment(AddActivity(app, -1))
                 }
                 R.id.menu_search -> {
-                    openMainFragment(SearchActivity())
+                    if(app.data.latestLocation != null)
+                        openMainFragment(SearchActivity(app.data.latestLocation!!))
                 }
                 R.id.menu_settings -> {
                     openMainFragment(SettingsActivity())
@@ -59,6 +61,9 @@ class MainActivity : AppCompatActivity() {
         if(savedInstanceState == null) {
             openMainFragment(HomeActivity(app))
         }
+
+        requireLocationPermission()
+        getLocation()
     }
 
     fun openMainFragment(fragment: Fragment) {
@@ -132,5 +137,41 @@ class MainActivity : AppCompatActivity() {
         app.saveToFile()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun requireLocationPermission() {
+        val locationPermissionRequest = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+                    Log.i("MAP", "Precise location access granted.")
+                }
+                permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
+                    Log.i("MAP", "Only approximate location access granted.")
+                } else -> {
+                    Log.i("MAP", "No location access granted.")
+                }
+            }
+        }
 
+        // ...
+
+        // Before you perform the actual permission request, check whether your app
+        // already has the permissions, and whether your app needs to show a permission
+        // rationale dialog. For more details, see Request permissions.
+        locationPermissionRequest.launch(arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION))
+    }
+
+    @SuppressLint("MissingPermission")
+    fun getLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
+            Log.i("MAP", "Last location: " + location?.latitude + ", " + location?.longitude)
+            if (location != null) {
+                app.data.latestLocation = location
+            }
+        }
+    }
 }

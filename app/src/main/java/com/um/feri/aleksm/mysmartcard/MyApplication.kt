@@ -1,10 +1,13 @@
 package com.um.feri.aleksm.mysmartcard
 
+import android.Manifest
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.provider.ContactsContract
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.gson.Gson
 import org.apache.commons.io.FileUtils
 import java.io.File
@@ -17,6 +20,7 @@ class MyApplication: Application() {
     lateinit var sharedPreferences:SharedPreferences
     lateinit var gson:Gson
     lateinit var file: File
+
 
     override fun onCreate() {
         super.onCreate()
@@ -48,4 +52,5 @@ class MyApplication: Application() {
             Log.e("Error", "Can't save data to file.");
         }
     }
+
 }

@@ -25,4 +25,5 @@
     <string name="notificationCardAlreadyExsist">Kartica že obstaja</string>
     <string name="notificationEnterCardNumber">Vnesite številko kartice</string>
     <string name="delete">Izbriši</string>
+    <string name="myCurrentLocation">Moja trenutna lokacija</string>
 </resources>

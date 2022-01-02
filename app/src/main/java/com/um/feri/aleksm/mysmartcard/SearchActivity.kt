@@ -31,7 +31,7 @@ import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 
 
-class SearchActivity : Fragment(), OnMapReadyCallback {
+class SearchActivity(var currentLocation: Location) : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentSearchActivityBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding
@@ -40,7 +40,6 @@ class SearchActivity : Fragment(), OnMapReadyCallback {
     lateinit var mapFragment: SupportMapFragment
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-    lateinit var currentLocation: Location
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,62 +51,9 @@ class SearchActivity : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
-//        findCurrentLocation()
 
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context, "Location permissions are enabled", Toast.LENGTH_LONG);
-            Log.i("MAP", "Location permissions are enabled")
-        }
-        else {
-            Toast.makeText(context, "Location permissions are disabled", Toast.LENGTH_LONG);
-            Log.i("MAP", "Location permissions are disabled")
-            //ActivityCompat.requestPermissions(Activity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1)
-            requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), 100)
-        }
-
-//        if (ActivityCompat.checkSelfPermission(
-//                requireContext(),
-//                Manifest.permission.ACCESS_FINE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED &&
-//            ActivityCompat.checkSelfPermission(
-//                requireContext(),
-//                Manifest.permission.ACCESS_COARSE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            requestPermissions(
-//                requireActivity(), arrayOf(
-//                    Manifest.permission.ACCESS_COARSE_LOCATION,
-//                    Manifest.permission.ACCESS_FINE_LOCATION
-//                ),
-//                1
-//            )
-//        } else {
-//            Log.e("DB", "PERMISSION GRANTED")
-//        }
-
-        fusedLocationProviderClient.lastLocation.addOnSuccessListener { location : Location? ->
-            // Got last known location. In some rare situations this can be null.
-            Log.i("MAP", "I got your last location: " + location?.latitude + ", " + location?.longitude)
-            currentLocation = location!!
-        }.addOnFailureListener {
-            Log.i("MAP", "I don't have your last location. ERROR: " + it.toString())
-        }.addOnCanceledListener {
-            Log.i("MAP", "Location listening was canceled")
-        }
-
-        Log.i("MAP", "Do tukaj pride vredu 2. Lokacija je: " + currentLocation.latitude)
 
         mapFragment.getMapAsync(this)
-
-        //findCurrentLocation()
-
-//        binding?.map?.setTileSource(TileSourceFactory.MAPNIK)
-//        binding?.map?.setMultiTouchControls(true)
-//        mapController = binding?.map?.controller as MapController
-//        mapController.setZoom(17.0)
-//        mapController.setCenter(GeoPoint(46.5680205, 16.052918))
     }
 
     override fun onDestroyView() { //because it can live also when it is not showen
@@ -116,26 +62,10 @@ class SearchActivity : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        val latLng = LatLng(currentLocation.getLatitude(), currentLocation.getLongitude())
-        val markerOptions = MarkerOptions().position(latLng).title("Moja lokacija")
+        val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
+        val markerOptions = MarkerOptions().position(latLng).title(R.string.myCurrentLocation.toString())
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17F))
         googleMap.addMarker(markerOptions)
-    }
-
-
-    private fun getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
-            Log.i("MAP", "Imate že dovoljenje")
-        } else {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
-        }
     }
 }

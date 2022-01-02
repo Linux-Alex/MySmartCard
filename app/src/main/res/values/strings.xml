@@ -25,5 +25,6 @@
     <string name="notificationCardAlreadyExsist">Card already exsist</string>
     <string name="notificationEnterCardNumber">Enter a card number</string>
     <string name="delete">Delete</string>
+    <string name="myCurrentLocation">My current location</string>
 
 </resources>
