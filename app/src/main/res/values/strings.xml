@@ -26,5 +26,6 @@
     <string name="notificationEnterCardNumber">Enter a card number</string>
     <string name="delete">Delete</string>
     <string name="myCurrentLocation">My current location</string>
+    <string name="foundNearestShop">I found the nearest shop</string>
 
 </resources>

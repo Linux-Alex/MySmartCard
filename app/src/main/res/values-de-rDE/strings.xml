@@ -26,4 +26,5 @@
     <string name="notificationEnterCardNumber">Geben sie ihre Kartennummber ein</string>
     <string name="delete">Entfernen</string>
     <string name="myCurrentLocation">Meine aktueller Standort</string>
+    <string name="foundNearestShop">Ich habe das nächste Geschäft gefunden</string>
 </resources>

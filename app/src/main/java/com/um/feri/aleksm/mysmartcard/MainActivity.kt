@@ -2,11 +2,16 @@ package com.um.feri.aleksm.mysmartcard
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.location.Location
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,12 +24,15 @@ import com.google.android.material.snackbar.Snackbar
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.um.feri.aleksm.mysmartcard.databinding.ActivityMainBinding
 import org.osmdroid.config.Configuration
+import android.content.Intent
+import androidx.core.app.NotificationCompat
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var app: MyApplication
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    lateinit var loopHandler: Handler
+    lateinit var fusedLocationClient: FusedLocationProviderClient
 
     @SuppressLint("MissingPermission")
     @RequiresApi(Build.VERSION_CODES.N)
@@ -50,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_search -> {
                     if(app.data.latestLocation != null)
-                        openMainFragment(SearchActivity(app.data.latestLocation!!))
+                        openMainFragment(SearchActivity(app))
                 }
                 R.id.menu_settings -> {
                     openMainFragment(SettingsActivity())
@@ -63,7 +71,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         requireLocationPermission()
-        getLocation()
+        loopHandler = Handler(Looper.getMainLooper())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loopHandler.post(getLocation)
     }
 
     fun openMainFragment(fragment: Fragment) {
@@ -164,6 +177,13 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.ACCESS_COARSE_LOCATION))
     }
 
+    val getLocation = object : Runnable {
+        override fun run() {
+            getLocation()
+            loopHandler.postDelayed(this, 2000)
+        }
+    }
+
     @SuppressLint("MissingPermission")
     fun getLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -174,4 +194,46 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        Log.i("NOTIFICATION", "Got the notification")
+        if (intent != null) {
+            val data = intent.getStringExtra("data")
+            if (data != null) {
+                val fragment: Fragment = HomeActivity(app)
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentMainWindow, fragment)
+                    .addToBackStack(null).commit()
+            }
+        }
+    }
+
+    companion object {
+        val CHANNEL_ID="com.um.feri.aleksm.mysmartcard" //my channel id
+        val TIME_ID="TIME_ID"
+        private var notificationId=0
+        fun getNotificationUniqueID():Int {
+            return notificationId++;
+        }
+    }
+
+
+    fun createNotificationChannel(descriptionText:String, name:String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(MainActivity.CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    fun btnAddCardBarcode(view: android.view.View) {
+
+    }
+
+
 }

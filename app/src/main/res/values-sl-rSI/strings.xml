@@ -26,4 +26,5 @@
     <string name="notificationEnterCardNumber">Vnesite številko kartice</string>
     <string name="delete">Izbriši</string>
     <string name="myCurrentLocation">Moja trenutna lokacija</string>
+    <string name="foundNearestShop">Našel sem najbližjo trgovino</string>
 </resources>

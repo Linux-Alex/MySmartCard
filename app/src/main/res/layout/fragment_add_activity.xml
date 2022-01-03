@@ -79,7 +79,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/txtCardNumber"
-                app:layout_constraintTop_toTopOf="@+id/txtCardNumber" />
+                app:layout_constraintTop_toTopOf="@+id/txtCardNumber"
+                android:onClick="btnAddCardBarcode"/>
 
             <TextView
                 android:id="@+id/lblShop"
